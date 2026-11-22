@@ -7,7 +7,7 @@
 // Outside the grader, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-game.ts';
@@ -15,7 +15,6 @@ import { buildDossier } from './vendor/makefun-game.ts';
 const repoRoot = fileURLToPath(new URL('.', import.meta.url));
 const outputDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
-rmSync(outputDir, { recursive: true, force: true });
 mkdirSync(outputDir, { recursive: true });
 cpSync(join(repoRoot, 'game'), join(outputDir, 'game'), { recursive: true });
 mkdirSync(join(outputDir, 'screenshots'), { recursive: true });
